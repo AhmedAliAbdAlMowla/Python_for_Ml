@@ -1,0 +1,47 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Feb 11 00:16:22 2019
+
+@author: Ahmed Ali
+"""
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn import svm
+
+
+
+data=pd.read_csv('E:\\heart.csv')
+
+data_in_array=np.array(data)
+
+w=data_in_array[:,:13]
+e=data_in_array[:,13:]
+my_modl=svm.SVR(kernel='linear',C=1.0)
+my_modl.fit(w,e)
+
+print(my_modl.score(w,e))
+
+print(my_modl.predict(np.array([[37,1,2,130,250,0,1,187,0,3.5,0,0,2]])))
+
+#a=my_modl.coef_
+
+#b=my_modl.intercept_
+
+#print(a)
+#print(b)
+
+#adlineValues=[]
+
+#for i in data_in_array:
+#    adlineValues.append(a * i[0] +b)
+ 
+x=w[:,:1]    
+y=w[:,3:4]
+plt.scatter(x,y)
+
+    
+    
+    
+
